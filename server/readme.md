@@ -8,3 +8,4 @@ For start server
 
 TODO
 - make request body param validation
+- optimize suggestion method
