@@ -25,12 +25,18 @@ fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
         app.post('/api/v1/naked', function(req, res) {
             for(let reqItem of req.body){
                 if(parsedDb[reqItem["Naked"]]){
-                    if(parsedDb[reqItem["Naked"]].length == 1){
-                        reqItem["Nikudim"] = parsedDb[reqItem["Naked"]]
-                    }
-                    if(parsedDb[reqItem["Naked"]].length > 1){
-                        reqItem["Nikudim"] = [...parsedDb[reqItem["Naked"]],...parsedDb[reqItem["Naked"]]]
-                    }
+
+                    // in original server db items were duplicated
+                    /*
+                     if(parsedDb[reqItem["Naked"]].length == 1){
+                         reqItem["Nikudim"] = parsedDb[reqItem["Naked"]]
+                     }
+                     if(parsedDb[reqItem["Naked"]].length > 1){
+                         reqItem["Nikudim"] = [...parsedDb[reqItem["Naked"]],...parsedDb[reqItem["Naked"]]]
+                     }
+                    */
+
+                    reqItem["Nikudim"] = parsedDb[reqItem["Naked"]]
                 }
             }
             res.json(req.body);
