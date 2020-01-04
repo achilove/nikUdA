@@ -37,6 +37,8 @@ fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
                     */
 
                     reqItem["Nikudim"] = parsedDb[reqItem["Naked"]]
+                }else{
+                    reqItem["Nikudim"] = []
                 }
             }
             res.json(req.body);
