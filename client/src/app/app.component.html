@@ -1,120 +1,109 @@
 <div class="app">
-    <app-toolbar></app-toolbar>
-    <main>
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile>
-          <mat-form-field>
-            <textarea placeholder="נקד פסקה שלמה"  [formControl]="textarreaControl"  matInput rows="5" cols="50" dir="rtl" style="font-size: large;"></textarea>
-          </mat-form-field>
-        </mat-grid-tile>
-        <!-- splitted to buttons -->
-        <mat-grid-tile>  
-          <div fxLayout='row' fxLayoutWrap class="cards" >
-            <mat-list role="list" *ngFor="let _nikuds of mainNikuds">
-              <mat-list-item role="listitem" style="font-size: large;">
-                <div *ngFor="let draft of _nikuds">
-                  <mat-card style="display: inline-block; " (click)="setWord(draft)" matTooltip="{{draft.Nikudim.join('  ')}}" matTooltipClass="custom-tooltip" matRipple class="clickable" *ngIf="draft.Nikudim && draft.Nikudim[0]">
-                    {{draft.Nikudim[0]}}
-                  </mat-card>
-                  <mat-card  style="display: inline-block;" (click)="setWord(draft)" matRipple class="clickable" *ngIf="draft.Nikudim && !draft.Nikudim[0]">
-                    {{draft.Naked}}
-                  </mat-card>
-                  <mat-card  style="display: inline-block; background-color: rgb(247, 247, 247);" matRipple *ngIf="draft.Nikudim == null">
-                    {{draft.Naked}}
-                  </mat-card>
-                </div>
-                  <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style" #group="matButtonToggleGroup" *ngFor="let draft of nikuds">
-                    <mat-button-toggle value={{draft.Nikudim[0]}} *ngIf="draft.Nikudim && draft.Nikudim[0]" (click)="setWord(draft)">{{draft.Nikudim[0]}}</mat-button-toggle>
-                    <mat-button-toggle value={{draft.Naked}} *ngIf="draft.Nikudim && !draft.Nikudim[0]" (click)="setWord(draft)">{{draft.Naked}}</mat-button-toggle>
-                    <mat-button-toggle value={{draft.Naked}} *ngIf="draft.Nikudim == null" (click)="setWord(draft)">{{draft.Naked}}</mat-button-toggle>
-                  </mat-button-toggle-group> -->
-              </mat-list-item>
-              <br>
-            </mat-list>
-          </div>        
-        </mat-grid-tile>
-        <mat-grid-tile> 
-          
-          <mat-list class="list-horizontal">
-            <mat-list-item>
-              <form class="autocompleteform">
-                <mat-form-field class="autocompleteform-full-width">
-                  <input type="text" placeholder="נקד מילה בודדת, אוטומטית" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectSuggestion(option)">
-                      {{option}}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-              </form>
+  <app-toolbar></app-toolbar>
+  <main>
+    <mat-grid-list cols="4"  rowHeight="100px">
+      <!-- user input textarea -->
+      <mat-grid-tile [colspan]="2" [rowspan]="4">
+        <mat-form-field>
+          <textarea placeholder="נקד פסקה שלמה"  [formControl]="textarreaControl"  matInput rows="10" cols="50" dir="rtl" style="font-size: large;"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- splitted to cards nakeds -->
+      <mat-grid-tile [colspan]="2" [rowspan]="4">  
+        <div fxLayout='row' fxLayoutWrap class="cards">
+          <mat-list role="list" *ngFor="let _nikuds of mainNikuds">
+            <mat-list-item role="listitem" style="font-size: large;">
+              <div *ngFor="let draft of _nikuds">
+                <mat-card style="display: inline-block; " (click)="setWord(draft)" matTooltip="{{draft.Nikudim.join('  ')}}" matTooltipClass="custom-tooltip" matRipple class="clickable" *ngIf="draft.Nikudim && draft.Nikudim[0]">
+                  {{draft.Nikudim[0]}}
+                </mat-card>
+                <mat-card  style="display: inline-block;" (click)="setWord(draft)" matRipple class="clickable" *ngIf="draft.Nikudim && !draft.Nikudim[0]">
+                  {{draft.Naked}}
+                </mat-card>
+                <mat-card  style="display: inline-block; background-color: rgb(247, 247, 247);" matRipple *ngIf="draft.Nikudim == null">
+                  {{draft.Naked}}
+                </mat-card>
+              </div>
+                <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style" #group="matButtonToggleGroup" *ngFor="let draft of nikuds">
+                  <mat-button-toggle value={{draft.Nikudim[0]}} *ngIf="draft.Nikudim && draft.Nikudim[0]" (click)="setWord(draft)">{{draft.Nikudim[0]}}</mat-button-toggle>
+                  <mat-button-toggle value={{draft.Naked}} *ngIf="draft.Nikudim && !draft.Nikudim[0]" (click)="setWord(draft)">{{draft.Naked}}</mat-button-toggle>
+                  <mat-button-toggle value={{draft.Naked}} *ngIf="draft.Nikudim == null" (click)="setWord(draft)">{{draft.Naked}}</mat-button-toggle>
+                </mat-button-toggle-group> -->
             </mat-list-item>
+            <br>
+          </mat-list>
+        </div>        
+      </mat-grid-tile>
+      
+      <!-- inlinne with autocomplete -->
+      <mat-grid-tile [colspan]="2" [rowspan]="1"> 
+            <form class="autocompleteform">
+              <mat-form-field class="autocompleteform-full-width">
+                <input type="text" placeholder="נקד מילה בודדת, אוטומטית" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectSuggestion(option)">
+                    {{option}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+            </form>
+      </mat-grid-tile>
+
+      <!-- user output textarea -->
+      <mat-grid-tile [colspan]="2" [rowspan]="5"> 
+        <mat-form-field>
+          <textarea value="{{userWord.join(' ')}}" matInput rows="10" cols="100" dir="rtl" style="font-size: large;"></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <!-- splitted drafts -->
+      <mat-grid-tile [colspan]="2" [rowspan]="4">
+        <div style="width: 74%;">
+          <mat-list>
             <mat-list-item>
               <mat-card class="clickable" style="display: inline-block;" matRipple *ngIf="selectedNaked">
                 <mat-card-title (click)="selectNikud(selectedNaked)">{{selectedNaked}}</mat-card-title>
               </mat-card>
               &nbsp;
-              <div *ngFor="let item of selectedNikidums" >
-                  <mat-card class="clickable" style="display: inline-block;" matRipple *ngIf="selectedNikidums" (click)="selectNikud(item)">
+                <div *ngFor="let item of selectedNikidums" >
+                  <mat-card class="clickable" style="display: inline-block;" *ngIf="selectedNikidums" (click)="selectNikud(item)">
                     {{item}}
                   </mat-card>&nbsp;
+                </div>
+            </mat-list-item>
+            <br><br><br>
+            <mat-list-item>
+              <div *ngFor="let item of selectedNikuds; let i = index">
+                <mat-card class="clickable" style="display: inline-block; font-size: 40px; width: 20px;" matRipple *ngIf="selectedNikuds" (click)="selectLetter(i)">
+                  {{item}}
+                </mat-card>&nbsp;&nbsp;
               </div>
             </mat-list-item>
+            <br>
+            <br><br>
+            <mat-list-item *ngIf="selectedIndex !== undefined">
+              <mat-icon aria-hidden="false" aria-label="backspace" class="clickable" (click)="undo()">backspace</mat-icon>&nbsp;&nbsp;
+              <img src="assets/images/nikud_1.svg" alt="שׂ" (click)="insertDraft('ׂ');" matTooltip="שׂין" matTooltipClass="custom-tooltip" [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
+              <img src="assets/images/nikud_2.svg" alt="שׁ" (click)="insertDraft('ׁ');" matTooltip="שׁין" matTooltipClass="custom-tooltip"  [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
+              <img class="clickable" src="assets/images/nikud_3.svg" alt="ֻ" (click)="insertDraft('ֻ');" matTooltip="קובוץ" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_4.svg" alt="ּ" (click)="insertDraft('ּ');" matTooltip="דּגש, שוּרוק, מפיק" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_5.svg" alt="ֹ" (click)="insertDraft('ֹ');" matTooltip="חולם מלא" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_6.svg" alt="ָ" (click)="insertDraft('ָ');" matTooltip="קָמץ" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_7.svg" alt="ַ" (click)="insertDraft('ַ');" matTooltip="פַתח" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_8.svg" alt="ֶ" (click)="insertDraft('ֶ');" matTooltip="סֶגול" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_9.svg" alt="ֵ" (click)="insertDraft('ֵ');" matTooltip="צֵירי" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_B.svg" alt="ִ" (click)="insertDraft('ִ');" matTooltip="חִיריק" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_C.svg" alt="ֳ" (click)="insertDraft('ֳ');" matTooltip="חטף קֳמץ" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_D.svg" alt="ֲ" (click)="insertDraft('ֲ');" matTooltip="חטף פֲתח" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_E.svg" alt="ֱ" (click)="insertDraft('ֱ');" matTooltip="חטף סֱגול" matTooltipClass="custom-tooltip"/>
+              <img class="clickable" src="assets/images/nikud_F.svg" alt="ְ" (click)="insertDraft('ְ');" matTooltip="שְווא" matTooltipClass="custom-tooltip"/>
+              &nbsp;&nbsp;<mat-icon aria-hidden="false" aria-label="done_outline" class="clickable" (click)="addWord()">done_outline</mat-icon>
+            </mat-list-item>
           </mat-list>
+        </div>
+      </mat-grid-tile>
 
-
-
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <mat-form-field>
-              <textarea value="{{userWord.join(' ')}}" matInput rows="5" cols="100" dir="rtl" style="font-size: large;"></textarea>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>
-        <mat-divider></mat-divider>
-        <br>
-      <!-- autocomplete input -->
-
-      <br>
-      <mat-list>
-        <mat-list-item>
-          <div *ngFor="let item of selectedNikuds; let i = index">
-            <mat-card class="clickable" style="display: inline-block; font-size: 30px;" matRipple *ngIf="selectedNikuds" (click)="selectLetter(i)">
-              {{item}}
-            </mat-card>
-          </div>
-        </mat-list-item>
-        <br>
-        <br>
-        <mat-list-item *ngIf="selectedIndex !== undefined">
-          <mat-icon aria-hidden="false" aria-label="backspace" class="clickable" (click)="undo()">backspace</mat-icon>&nbsp;&nbsp;
-          <img src="assets/images/nikud_1.svg" alt="שׂ" (click)="insertDraft('ׂ');" matTooltip="שׂין" matTooltipClass="custom-tooltip" [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
-          <img src="assets/images/nikud_2.svg" alt="שׁ" (click)="insertDraft('ׁ');" matTooltip="שׁין" matTooltipClass="custom-tooltip"  [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
-          <img class="clickable" src="assets/images/nikud_3.svg" alt="ֻ" (click)="insertDraft('ֻ');" matTooltip="קובוץ" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_4.svg" alt="ּ" (click)="insertDraft('ּ');" matTooltip="דּגש, שוּרוק, מפיק" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_5.svg" alt="ֹ" (click)="insertDraft('ֹ');" matTooltip="חולם מלא" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_6.svg" alt="ָ" (click)="insertDraft('ָ');" matTooltip="קָמץ" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_7.svg" alt="ַ" (click)="insertDraft('ַ');" matTooltip="פַתח" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_8.svg" alt="ֶ" (click)="insertDraft('ֶ');" matTooltip="סֶגול" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_9.svg" alt="ֵ" (click)="insertDraft('ֵ');" matTooltip="צֵירי" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_B.svg" alt="ִ" (click)="insertDraft('ִ');" matTooltip="חִיריק" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_C.svg" alt="ֳ" (click)="insertDraft('ֳ');" matTooltip="חטף קֳמץ" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_D.svg" alt="ֲ" (click)="insertDraft('ֲ');" matTooltip="חטף פֲתח" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_E.svg" alt="ֱ" (click)="insertDraft('ֱ');" matTooltip="חטף סֱגול" matTooltipClass="custom-tooltip"/>
-          <img class="clickable" src="assets/images/nikud_F.svg" alt="ְ" (click)="insertDraft('ְ');" matTooltip="שְווא" matTooltipClass="custom-tooltip"/>
-          &nbsp;&nbsp;<mat-icon aria-hidden="false" aria-label="done_outline" class="clickable" (click)="addWord()">done_outline</mat-icon>
-        </mat-list-item>
-      </mat-list>
-      <br>
-
-
-      
-      <!-- <mat-list *ngIf="userWord.length>0">
-        <mat-list-item>
-          <mat-form-field>
-            <textarea matInput rows="5" cols="200" dir="rtl" style="font-size: large;" value="{{userWord.join(' ')}}"></textarea>
-          </mat-form-field>
-        </mat-list-item>
-      </mat-list> -->
-    </main>
+    </mat-grid-list>
+  </main>
 </div>
