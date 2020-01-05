@@ -53,7 +53,6 @@
                 <mat-card-title (click)="selectNikud(selectedNaked)">{{selectedNaked}}</mat-card-title>
               </mat-card>
               &nbsp;
-              <!-- <mat-icon aria-hidden="false" aria-label="arrow_left_alt" style="padding-left: 1%;padding-right: 1%;">arrow_left_alt</mat-icon> -->
               <div *ngFor="let item of selectedNikidums" >
                   <mat-card class="clickable" style="display: inline-block;" matRipple *ngIf="selectedNikidums" (click)="selectNikud(item)">
                     {{item}}
@@ -88,7 +87,7 @@
         <br>
         <br>
         <mat-list-item *ngIf="selectedIndex !== undefined">
-          <mat-icon aria-hidden="false" aria-label="backspace" class="clickable">backspace</mat-icon>&nbsp;&nbsp;
+          <mat-icon aria-hidden="false" aria-label="backspace" class="clickable" (click)="undo()">backspace</mat-icon>&nbsp;&nbsp;
           <img src="assets/images/nikud_1.svg" alt="שׂ" (click)="insertDraft('ׂ');" matTooltip="שׂין" matTooltipClass="custom-tooltip" [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
           <img src="assets/images/nikud_2.svg" alt="שׁ" (click)="insertDraft('ׁ');" matTooltip="שׁין" matTooltipClass="custom-tooltip"  [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
           <img class="clickable" src="assets/images/nikud_3.svg" alt="ֻ" (click)="insertDraft('ֻ');" matTooltip="קובוץ" matTooltipClass="custom-tooltip"/>

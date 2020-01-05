@@ -35,6 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   selectedNikuds = []
   selectedIndex:number
   showSinVowel = true
+  undoWord = ''
 
   mainNikuds = []
   myControl = new FormControl();
@@ -97,6 +98,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private selectNikud(nikud){
+    console.log(nikud)
+    this.undoWord = ''+nikud
     this.selectedNikuds = splitWholeNikuds(nikud)
   }
  
@@ -111,11 +114,15 @@ export class AppComponent implements OnInit, OnDestroy {
     this.selectedNikuds[this.selectedIndex] = changed
   }
 
-  private addWord(){
-    let word = this.selectedNikuds.join('')
+  private addWord(word = this.selectedNikuds.join('')){
+    
     if(!this.selectedNikidums.includes(word)){
       this.selectedNikidums.push(word)
     }
     this.userWord.push(word)
+  }
+
+  private undo(){
+    this.selectNikud(this.undoWord)
   }
 }
