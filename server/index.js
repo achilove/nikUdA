@@ -3,11 +3,26 @@ require('dotenv').config()
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const path = require('path')
 
 const dbPath = process.env.DBPATH? './' + process.env.DBPATH: './db-original.json'
 const port = process.env.PORT || 3000
 
 const app = express();
+
+const allowedExt = [
+    '.js',
+    '.ico',
+    '.css',
+    '.png',
+    '.jpg',
+    '.woff2',
+    '.woff',
+    '.ttf',
+    '.svg',
+  ];
+
+
 app.use(cors())
 
 fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
@@ -18,11 +33,20 @@ fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
         // start server
         const parsedDb = JSON.parse(rawDb)
 
-        app.use(bodyParser.json())
+        
         app.listen(port, function () {
             console.log(`Server listening on port ${port}!`);
         });
-
+        app
+        .use(bodyParser.json())
+        
+        app.get('*', (req, res) => {
+            if (allowedExt.filter(ext => req.url.indexOf(ext) > 0).length > 0) {
+              res.sendFile(path.resolve(`public/${req.url}`));
+            } else {
+              res.sendFile(path.resolve('public/index.html'));
+            }
+          });
 
         app.post('/api/v1/naked', function(req, res) {
             for(let reqItem of req.body){
@@ -46,9 +70,6 @@ fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
             res.json(req.body);
         });
 
-        
-
-        
         app.post('/api/v1/suggest', function(req, res) {
             req.body['Nakeds'] = []
             let bodyWordParam = req.body['Naked']
