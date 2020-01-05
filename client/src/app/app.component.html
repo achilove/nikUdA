@@ -60,18 +60,20 @@
                   </mat-card>&nbsp;
               </div>
             </mat-list-item>
-    
-    
           </mat-list>
+
+
+
         </mat-grid-tile>
-          <mat-grid-tile>
+
+        <mat-grid-tile>
             <mat-form-field>
               <textarea value="{{userWord.join(' ')}}" matInput rows="5" cols="100" dir="rtl" style="font-size: large;"></textarea>
             </mat-form-field>
           </mat-grid-tile>
-      </mat-grid-list>
-      <mat-divider></mat-divider>
-      <br>
+        </mat-grid-list>
+        <mat-divider></mat-divider>
+        <br>
       <!-- autocomplete input -->
 
       <br>
@@ -83,32 +85,30 @@
             </mat-card>
           </div>
         </mat-list-item>
-      </mat-list>
-      <br>
-
-      <mat-list *ngIf="selectedIndex !== undefined">
-        <mat-list-item >
+        <br>
+        <br>
+        <mat-list-item *ngIf="selectedIndex !== undefined">
           <mat-icon aria-hidden="false" aria-label="backspace" class="clickable">backspace</mat-icon>&nbsp;&nbsp;
           <img src="assets/images/nikud_1.svg" alt="שׂ" (click)="insertDraft('ׂ');" matTooltip="שׂין" matTooltipClass="custom-tooltip" [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
-					<img src="assets/images/nikud_2.svg" alt="שׁ" (click)="insertDraft('ׁ');" matTooltip="שׁין" matTooltipClass="custom-tooltip"  [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
+          <img src="assets/images/nikud_2.svg" alt="שׁ" (click)="insertDraft('ׁ');" matTooltip="שׁין" matTooltipClass="custom-tooltip"  [ngClass]="showSinVowel == true? 'clickable': 'sinVowel'"/>
           <img class="clickable" src="assets/images/nikud_3.svg" alt="ֻ" (click)="insertDraft('ֻ');" matTooltip="קובוץ" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_4.svg" alt="ּ" (click)="insertDraft('ּ');" matTooltip="דּגש, שוּרוק, מפיק" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_5.svg" alt="ֹ" (click)="insertDraft('ֹ');" matTooltip="חולם מלא" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_6.svg" alt="ָ" (click)="insertDraft('ָ');" matTooltip="קָמץ" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_7.svg" alt="ַ" (click)="insertDraft('ַ');" matTooltip="פַתח" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_8.svg" alt="ֶ" (click)="insertDraft('ֶ');" matTooltip="סֶגול" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_9.svg" alt="ֵ" (click)="insertDraft('ֵ');" matTooltip="צֵירי" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_B.svg" alt="ִ" (click)="insertDraft('ִ');" matTooltip="חִיריק" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_C.svg" alt="ֳ" (click)="insertDraft('ֳ');" matTooltip="חטף קֳמץ" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_D.svg" alt="ֲ" (click)="insertDraft('ֲ');" matTooltip="חטף פֲתח" matTooltipClass="custom-tooltip"/>
-					<img class="clickable" src="assets/images/nikud_E.svg" alt="ֱ" (click)="insertDraft('ֱ');" matTooltip="חטף סֱגול" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_4.svg" alt="ּ" (click)="insertDraft('ּ');" matTooltip="דּגש, שוּרוק, מפיק" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_5.svg" alt="ֹ" (click)="insertDraft('ֹ');" matTooltip="חולם מלא" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_6.svg" alt="ָ" (click)="insertDraft('ָ');" matTooltip="קָמץ" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_7.svg" alt="ַ" (click)="insertDraft('ַ');" matTooltip="פַתח" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_8.svg" alt="ֶ" (click)="insertDraft('ֶ');" matTooltip="סֶגול" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_9.svg" alt="ֵ" (click)="insertDraft('ֵ');" matTooltip="צֵירי" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_B.svg" alt="ִ" (click)="insertDraft('ִ');" matTooltip="חִיריק" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_C.svg" alt="ֳ" (click)="insertDraft('ֳ');" matTooltip="חטף קֳמץ" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_D.svg" alt="ֲ" (click)="insertDraft('ֲ');" matTooltip="חטף פֲתח" matTooltipClass="custom-tooltip"/>
+          <img class="clickable" src="assets/images/nikud_E.svg" alt="ֱ" (click)="insertDraft('ֱ');" matTooltip="חטף סֱגול" matTooltipClass="custom-tooltip"/>
           <img class="clickable" src="assets/images/nikud_F.svg" alt="ְ" (click)="insertDraft('ְ');" matTooltip="שְווא" matTooltipClass="custom-tooltip"/>
           &nbsp;&nbsp;<mat-icon aria-hidden="false" aria-label="done_outline" class="clickable" (click)="addWord()">done_outline</mat-icon>
         </mat-list-item>
-        <br>
-        <br>
       </mat-list>
       <br>
+
+
       
       <!-- <mat-list *ngIf="userWord.length>0">
         <mat-list-item>
