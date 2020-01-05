@@ -112,6 +112,10 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private addWord(){
-    this.userWord.push(this.selectedNikuds.join(''))
+    let word = this.selectedNikuds.join('')
+    if(!this.selectedNikidums.includes(word)){
+      this.selectedNikidums.push(word)
+    }
+    this.userWord.push(word)
   }
 }
