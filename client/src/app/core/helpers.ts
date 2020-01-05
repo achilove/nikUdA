@@ -32,8 +32,6 @@ export function do_enders(word) {
     word = word.replace(
       /\u05E6[\u05B0\u05B1\u05B2\u05B3\u05B4\u05B5\u05B6\u05B7\u05B8\u05C2\u05C1\u05B9\u05BC\u05BB]*$/,
       '\u05E5');
-    // console.log("do_enders_end", word)
-  
     return word;
   }
 
