@@ -100,7 +100,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private selectNikud(nikud){
     console.log(nikud)
     this.undoWord = ''+nikud
-    this.selectedNikuds = splitWholeNikuds(nikud)
+    this.selectedNikuds = splitWholeNikuds(nikud).reverse()
   }
  
   private selectLetter(index:number){
