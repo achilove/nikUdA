@@ -43,8 +43,6 @@ export class AppComponent implements OnInit, OnDestroy {
   userWord = []
 
   nikuds = []
-  notNikuds = []
-  serverNikuds = []
 
   ngOnInit() {
     this.themingSubscription = this.theming.theme.subscribe(theme => {this.cssClass = theme;});
