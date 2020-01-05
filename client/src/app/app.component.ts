@@ -83,37 +83,37 @@ export class AppComponent implements OnInit, OnDestroy {
     })
   }
 
-  private selectSuggestion(w){
+  selectSuggestion(w){
     this.selectedNaked = w
     this.nikidumService.naked([[w]]).subscribe(nakeds =>{
       this.selectedNikidums = nakeds[0][0]['Nikudim']
     })
   }
 
-  private setWord(nikud){
+  setWord(nikud){
     this.myControl.setValue(nikud.Naked)
     this.selectedNaked = nikud.Naked
     this.selectedNikidums = nikud.Nikudim
     this.selectLetter(0)
   }
 
-  private selectNikud(nikud){
+  selectNikud(nikud){
     this.undoWord = ''+nikud
     this.selectedNikuds = splitWholeNikuds(nikud).reverse()
   }
  
-  private selectLetter(index:number){
+   selectLetter(index:number){
     this.selectedIndex = index
     this.showSinVowel = isSin(this.selectedNikuds[index])
   }
 
-  private insertDraft(vowel){
+   insertDraft(vowel){
     let letter = this.selectedNikuds[this.selectedIndex]
     let changed = setDraft(letter, vowel)
     this.selectedNikuds[this.selectedIndex] = changed
   }
 
-  private addWord(word = this.selectedNikuds.join('')){
+   addWord(word = this.selectedNikuds.join('')){
     
     if(!this.selectedNikidums.includes(word)){
       this.selectedNikidums.push(word)
@@ -121,7 +121,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.userWord.push(word)
   }
 
-  private undo(){
+  undo(){
     this.selectNikud(this.undoWord)
   }
 }
