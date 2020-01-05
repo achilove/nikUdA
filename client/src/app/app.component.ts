@@ -61,6 +61,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
      this.nikidumService.naked(_payload).subscribe(val =>{
        this.mainNikuds = val
+       for(let innerArray of val.reverse()){
+        for(let wordObj of innerArray){
+          if(wordObj.Naked !== null){
+            this.setWord(wordObj)
+            this.selectNikud(this.selectedNaked)
+            break
+          }
+        }
+       }
      })
     })
 
@@ -80,10 +89,11 @@ export class AppComponent implements OnInit, OnDestroy {
     })
   }
 
-  private setWord(nikud, nikidums){
+  private setWord(nikud){
     this.myControl.setValue(nikud.Naked)
     this.selectedNaked = nikud.Naked
     this.selectedNikidums = nikud.Nikudim
+    this.selectLetter(0)
   }
 
   private selectNikud(nikud){
