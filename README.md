@@ -1,6 +1,7 @@
 # nikUdA
-Hebrew vowels interactive
+**Hebrew vowels interactive**
+**Test task for Enikova Nadejda**
 
-Test task for Enikova Nadejda
-
-Backend placed in server folder
+ 
+[Backend](https://github.com/achilove/nikUdA/tree/master/server) - node.js, express, jsondb
+[Frontend](https://github.com/achilove/nikUdA/tree/master/client) - angular, material
