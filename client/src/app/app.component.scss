@@ -1,0 +1,60 @@
+main {
+  // padding: 1rem;
+  height: 100%;
+}
+
+
+.mat-form-field{
+  width: 50%;
+}
+
+textarea{
+  text-align: right;
+}
+
+@import '~@angular/material/theming';
+
+.clickable {
+  cursor: default;
+  &:hover {
+    @include mat-elevation(8);
+  }
+}
+
+.sinVowel{
+  cursor:not-allowed;
+  &:hover {
+    @include mat-elevation(2, #f8f7f7, 0.8);
+  }
+}
+
+mat-list.list-horizontal {
+  padding: 0;
+  .mat-list-item {
+    display: inline-block;
+    height: auto;
+    width: auto;
+  }
+}
+
+.autocompleteform {
+  min-width: 150px;
+  max-width: 250px;
+  width: 100%;
+}
+
+.autocompleteform-full-width {
+  width: 100%;
+  // font-size: larger;
+}
+
+.custom-tooltip {
+  font-size:15px;
+}
+
+
+
+
+.resultText{
+  font-size: 40px;
+}
