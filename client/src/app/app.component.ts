@@ -70,9 +70,6 @@ export class AppComponent implements OnInit, OnDestroy {
   initSuggestController(){
     this.myControl.valueChanges.subscribe(nikud => {
       this.filteredOptions = this.nikidumService.suggest(nikud)
-      this.filteredOptions.subscribe(niks => {
-
-      })
     })
   }
 
