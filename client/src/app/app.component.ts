@@ -39,7 +39,6 @@ export class AppComponent implements OnInit, OnDestroy {
   mainNikuds = []
   myControl = new FormControl();
   textarreaControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]>;
   userWord = []
 
@@ -90,7 +89,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.myControl.setValue(nikud.Naked)
     this.selectedNaked = nikud.Naked
     this.selectedNikidums = nikud.Nikudim
-    // console.log(nikud)
   }
 
   private selectNikud(nikud){
@@ -100,15 +98,12 @@ export class AppComponent implements OnInit, OnDestroy {
   private selectLetter(index:number){
     this.selectedIndex = index
     this.showSinVowel = isSin(this.selectedNikuds[index])
-    console.log(this.showSinVowel)
   }
 
   private insertDraft(vowel){
     let letter = this.selectedNikuds[this.selectedIndex]
     let changed = setDraft(letter, vowel)
     this.selectedNikuds[this.selectedIndex] = changed
-    
-    // this.selectedNikuds[this.selectedIndex] = setDraft(this.selectedNikuds[this.selectedIndex], vowel)
   }
 
   private addWord(){
