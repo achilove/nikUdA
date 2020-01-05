@@ -45,6 +45,9 @@ fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
             }
             res.json(req.body);
         });
+
+        
+
         
         app.post('/api/v1/suggest', function(req, res) {
             req.body['Nakeds'] = []
@@ -59,6 +62,36 @@ fs.readFile(dbPath, 'utf-8', (err, rawDb)=>{
                     }
                 }
             res.json(req.body);
+        });
+
+        app.post('/api/v2/naked', function(req, res) {
+            // req.body is array of arrays
+            let response = []
+            for(let reqItem of req.body){
+                let innerArray = []
+                for(let word of reqItem){
+                    if(/[אבגדהוזחטיכךלמםנןסעפףצץקרשתְֱֲֳִֵֶַָֹֻּׁׂ]/g.test(word)){
+                        if(parsedDb[word]){
+                            innerArray.push({
+                                Naked: word,
+                                Nikudim: parsedDb[word]
+                            })
+                        }else{
+                            innerArray.push({
+                                Naked: word,
+                                Nikudim: []
+                            })
+                        } 
+                    }else{
+                        innerArray.push({
+                            Naked: word,
+                            Nikudim: null
+                        })
+                    }
+                }
+                response.push(innerArray)
+            }
+            res.json(response);
         });
     }
 })
